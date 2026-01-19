@@ -31,18 +31,22 @@ class AMyProject415HoodV2Projectile : public AActor
 	//UPROPERTY(EditAnywhere)
 	//UMaterialInstanceDynamic* splatmat;
 
-	//UPROPERTY(EditAnywhere)
-	//FLinearColor randColor;
+	UPROPERTY(EditAnywhere)
+		FLinearColor randColor;
 
-	//UPROPERTY(EditAnywhere)
-	//UMaterialInterface* projMat;
+	UPROPERTY(EditAnywhere)
+		UMaterialInterface* projMat;
 
-	//UPROPERTY()
-	//UMaterialInstanceDynamic* dmiMat;
+	UPROPERTY()
+		UMaterialInstanceDynamic* dmiMat;
 
 public:
 	AMyProject415HoodV2Projectile();
 
+protected:
+	virtual void BeginPlay();
+
+public:
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
