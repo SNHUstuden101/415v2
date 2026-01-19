@@ -38,16 +38,16 @@ AMyProject415HoodV2Projectile::AMyProject415HoodV2Projectile()
 	InitialLifeSpan = 3.0f;
 }
 
-//void AMyProject415HoodV2Projectile::BeginPlay()
-//{
-	//Super::BeginPlay();
-	//randColor = FLinearColor(UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), 1.0f);
+void AMyProject415HoodV2Projectile::BeginPlay()
+{
+	Super::BeginPlay();
+	randColor = FLinearColor(UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f), 1.0f);
 
-	//dmiMat = UMaterialInstanceDynamic::Create(projMat, this);
-	//ballMesh->SetMaterial(0, dmiMat);
+	dmiMat = UMaterialInstanceDynamic::Create(projMat, this);
+	ballMesh->SetMaterial(0, dmiMat);
 
-	//dmiMat->SetVectorParameterValue("ProjColor", randColor);
-//}
+	dmiMat->SetVectorParameterValue("ProjColor", randColor);
+}
 
 
 void AMyProject415HoodV2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -62,12 +62,12 @@ void AMyProject415HoodV2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* 
 
 	if (OtherActor != nullptr)
 	{
-		float ranNumX = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
-		float ranNumY = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
-		float ranNumZ = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
-		float frameNum = UKismetMathLibrary::RandomFloatInRange(0.0f, 3.0f);
+		//float ranNumX = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
+		//float ranNumY = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
+		//float ranNumZ = UKismetMathLibrary::RandomFloatInRange(0.0f, 1.0f);
 		//float frameNum = UKismetMathLibrary::RandomFloatInRange(0.0f, 3.0f);
-		FVector4 randColor = FVector4(ranNumX, ranNumY, ranNumZ, 1.0f);
+		float frameNum = UKismetMathLibrary::RandomFloatInRange(0.0f, 3.0f);
+		//FVector4 randColor = FVector4(ranNumX, ranNumY, ranNumZ, 1.0f);
 
 		auto Decal = UGameplayStatics::SpawnDecalAtLocation(GetWorld(), baseMat, FVector(UKismetMathLibrary::RandomFloatInRange(20.0f, 40.0f)), Hit.Location, Hit.Normal.Rotation(), 0.0f);
 		auto UMaterialInstance = Decal->CreateDynamicMaterialInstance();
