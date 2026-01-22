@@ -7,6 +7,8 @@
 #include "Components/BoxComponent.h"
 #include "Cube_DMI.generated.h"
 
+class UNiagaraSystem; //Forward declaration of Niagara system
+
 UCLASS()
 class MYPROJECT415HOODV2_API ACube_DMI : public AActor
 {
@@ -26,16 +28,19 @@ public:
 
 
 	UPROPERTY(EditAnywhere)
-		UBoxComponent* boxComp;
+		UBoxComponent* boxComp; //Box collision component
 
 	UPROPERTY(EditAnywhere)
-		UStaticMeshComponent* cubeMesh;
+		UStaticMeshComponent* cubeMesh;//Cube mesh component
 
 	UPROPERTY(EditAnywhere)
-		UMaterialInterface* baseMat;
+		UMaterialInterface* baseMat; //Base material to create dynamic instance from
 
 	UPROPERTY(EditAnywhere)
-		UMaterialInstanceDynamic* dmimat;
+		UMaterialInstanceDynamic* dmimat; //Dynamic material instance
+
+	UPROPERTY(EditAnywhere) //Niagara particle system for splash effect
+		UNiagaraSystem* colorP; //Niagara particle system for color splash effect
 
 	UFUNCTION()
 	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
