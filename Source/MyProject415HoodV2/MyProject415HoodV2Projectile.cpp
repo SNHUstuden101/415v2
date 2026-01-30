@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h" //Required for spawning decals
 #include "NiagaraFunctionLibrary.h"//Essential for spawning Niagara particle systems
 #include "NiagaraComponent.h" //Required for UNiagaraComponent (to interact with spawned Niagara systems)
+#include "PerlinProcTerrain.h"
 
 
 AMyProject415HoodV2Projectile::AMyProject415HoodV2Projectile() 
@@ -84,6 +85,13 @@ void AMyProject415HoodV2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* 
 
 		UMaterialInstance->SetVectorParameterValue("Color", randColor); //Set the color parameter in the decal material to the random color
 		UMaterialInstance->SetScalarParameterValue("Frame", frameNum); //Set the frame parameter in the decal material to a random frame between 0 and 3
+
+		APerlinProcTerrain* procTerrain = Cast<APerlinProcTerrain>(OtherActor); //Cast the hit actor to APerlinProcTerrain
+
+		if (procTerrain)
+		{
+			procTerrain->AlterMesh(Hit.ImpactPoint); //Call the AlterMesh function on the terrain to modify the mesh at the hit location
+		}
 
 	}
 }
