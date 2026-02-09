@@ -48,6 +48,9 @@ class AMyProject415HoodV2Character : public ACharacter
 public:
 	AMyProject415HoodV2Character();
 
+UPROPERTY(EditAnywhere)
+	bool isTeleporting;
+
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
